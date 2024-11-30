@@ -1,4 +1,6 @@
+#!/usr/bin/bash
 
+source /etc/profile
 /opt/projects/kafka-reconfigure/bin/kafka-reconfigure
 
 $CONFLUENT_HOME/bin/zookeeper-server-start -daemon $CONFLUENT_HOME/etc/kafka/zookeeper.properties

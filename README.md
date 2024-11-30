@@ -9,12 +9,13 @@ It creates three separate docker containers on the same host. The containers are
 
 - Install [docker engine](https://docs.docker.com/engine/install/ubuntu/) on your host.
 - git clone this project
-- Download and save [jdk11 tar.gz](https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz) file in the data directory (save as jdk11.tar.gz):
-  - curl -o data/jdk11.tar.gz "https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz"
+- `mkdir data`
+- Download JDK 21 and store in data folder
+  - `curl -o data/jdk-21.tar.gz https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz` 
 - Download and save confluent platform tar.gz file the data directory (save as confluent.tar.gz)
-  - curl -o data/confluent.tar.gz "http://packages.confluent.io/archive/6.1/confluent-6.1.1.tar.gz"
+  - `curl -o data/confluent.tar.gz "http://packages.confluent.io/archive/7.7/confluent-7.7.1.tar.gz"`
 - Build your docker image which embeds confluent downloaded in last step
-  - docker build -t ubuntu-kafka .
+  - `docker build -t ubuntu-kafka .`
 - Run three node cluster:
   - `BROKER_COUNT=3 ./run.sh`
 
@@ -53,10 +54,10 @@ libraries, the fact remains that this information is exposed to the client. This
 
 For example, let's assume following setup:
 
-           Pair1(listener, adv listener)   Pair2(listener, adv listener)
-Broker1:   (server-1:9091,server-1:9091)  (server-1:10091, external-name-broker-1.com:10091)
-Broker2:   (server-2:9091,server-2:9091)  (server-2:10092, external-name-broker-2.com:10092)
-Broker3:   (server-3:9091,server-3:9091)  (server-3:10093, external-name-broker-3.com:10093)
+                Pair1(listener, adv listener)   Pair2(listener, adv listener)
+    Broker1:   (server-1:9091,server-1:9091)  (server-1:10091, external-name-broker-1.com:10091)
+    Broker2:   (server-2:9091,server-2:9091)  (server-2:10092, external-name-broker-2.com:10092)
+    Broker3:   (server-3:9091,server-3:9091)  (server-3:10093, external-name-broker-3.com:10093)
  
 So, two pairs are configured for each host. First Element in a pair is telling the broker to listen on a particular port. Second is the corresponding advertised listener.
      
