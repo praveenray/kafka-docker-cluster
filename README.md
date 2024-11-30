@@ -76,7 +76,7 @@ Since a client is allowed to connect to any node in the cluster, ALL externally 
 Other useful fun facts :
 
   - Kafka Topics have partition Leaders. ALL writes for a topic partition go through _same_ Leader node. Leader is the single point of failure and yes, it might become a
-    hotspot if you are unlucky and not watching over your cluster. It's possible for a single node to end up a designated leader for multiple partitions even though other nodes are available to fulfill this role -  (Leader Skew)[https://hashedin.com/blog/re-balance-your-kafka/]
+    hotspot if you are unlucky and not watching over your cluster. It's possible for a single node to end up a designated leader for multiple partitions even though other nodes are available to fulfill this role -  [Leader Skew](https://hashedin.com/blog/re-balance-your-kafka/)
   - In the same vein, due to unlucky turn of events (node failures and node restarts), it's possible for an uneven partition distribution - [Broker Skew](https://hashedin.com/blog/re-balance-your-kafka/)   
   - Kafka cluster has a controller Node which has certain operations going through it (and only through it). Another potential single point of failure and hotspot candidate
   - Good news being, these single points of failures are not clients' responsibilities. Fortunately Kafka (and underlying zookeeper) watch over failing Leaders and work to elect new leaders without
